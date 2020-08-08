@@ -25,9 +25,17 @@ module.exports = {
   env: envVars.NODE_ENV,
   port: envVars.PORT,
   database: {
-    db_name: envVars.DB_NAME,
-    db_username: envVars.DB_USERNAME,
-    db_password: envVars.DB_PASSWORD,
-    db_dialect: envVars.DB_DIALECT,
+    development: {
+      db_name: envVars.DB_NAME,
+      db_username: envVars.DB_USERNAME,
+      db_password: envVars.DB_PASSWORD,
+      db_dialect: envVars.DB_DIALECT,
+    },
+    test: {
+      db_name: envVars.DB_TEST_NAME,
+      db_username: envVars.DB_TEST_USERNAME,
+      db_password: envVars.DB_TEST_PASSWORD,
+      db_dialect: envVars.DB_TEST_DIALECT,
+    },
   },
 };

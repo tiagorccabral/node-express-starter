@@ -8,6 +8,10 @@ const envVarsSchema = Joi.object()
   .keys({
     NODE_ENV: Joi.string().valid('production', 'development', 'test').required(),
     PORT: Joi.number().default(3000),
+    DB_NAME: Joi.string().required(),
+    DB_USERNAME: Joi.string().required(),
+    DB_PASSWORD: Joi.string().allow('').required(),
+    DB_DIALECT: Joi.string().valid('postgres', 'mysql', 'mssql', 'mariadb').required(),
   })
   .unknown();
 
@@ -20,4 +24,10 @@ if (error) {
 module.exports = {
   env: envVars.NODE_ENV,
   port: envVars.PORT,
+  database: {
+    db_name: envVars.DB_NAME,
+    db_username: envVars.DB_USERNAME,
+    db_password: envVars.DB_PASSWORD,
+    db_dialect: envVars.DB_DIALECT,
+  },
 };

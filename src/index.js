@@ -1,12 +1,12 @@
 const app = require('./app');
 const config = require('./config/config.js');
 const logger = require('./config/logger');
-const { sequelize } = require('./models');
+const db = require('./models');
 
 let server = null;
 server = app.listen(config.port, async () => {
   try {
-    await sequelize.authenticate();
+    await db.sequelize.authenticate();
     logger.info('DB is Up and running!');
   } catch (error) {
     logger.error('Unable to connect to the database:', error);

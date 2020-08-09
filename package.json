@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A complete Node/Express API starter project",
   "author": "Tiago Cabral",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "jest -i",
     "dev": "cross-env NODE_ENV=development nodemon src/index.js",

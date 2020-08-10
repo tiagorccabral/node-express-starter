@@ -7,6 +7,11 @@
   "scripts": {
     "test": "jest -i",
     "dev": "cross-env NODE_ENV=development nodemon src/index.js",
+    "db:create": "sequelize db:create",
+    "db:migrate": "sequelize db:migrate",
+    "db:migrate:undo": "sequelize db:migrate:undo",
+    "db:setup": "sequelize db:create; sequelize db:migrate; sequelize db:seed:all",
+    "db:reset": "sequelize db:drop; sequelize db:create; sequelize db:migrate; sequelize db:seed:all",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prettier": "prettier --check **/*.js",
@@ -23,6 +28,7 @@
     "pg": "^8.3.0",
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.3.4",
+    "sequelize-cli": "^6.2.0",
     "winston": "^3.3.3"
   },
   "devDependencies": {

@@ -6,8 +6,8 @@ const path = require('path');
 const { Sequelize } = require('sequelize');
 
 const basename = path.basename(__filename);
-const config = require('../config/config');
-const logger = require('../config/logger');
+const config = require('../../config/config');
+const logger = require('../../config/logger');
 
 // load the correct env configurations for DB
 const dbConfig = config.database[config.env];

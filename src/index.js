@@ -1,7 +1,7 @@
 const app = require('./app');
 const config = require('./config/config.js');
 const logger = require('./config/logger');
-const db = require('./models');
+const db = require('./db/models');
 
 let server = null;
 server = app.listen(config.port, async () => {

@@ -6,12 +6,16 @@ dotenv.config({ path: path.join(__dirname, '../../.env') });
 
 const envVarsSchema = Joi.object()
   .keys({
-    NODE_ENV: Joi.string().valid('production', 'development', 'test').required(),
+    NODE_ENV: Joi.string().valid('production', 'development', 'test'),
     PORT: Joi.number().default(3000),
     DB_NAME: Joi.string().required(),
     DB_USERNAME: Joi.string().required(),
     DB_PASSWORD: Joi.string().allow('').required(),
     DB_DIALECT: Joi.string().valid('postgres', 'mysql', 'mssql', 'mariadb').required(),
+    DB_TEST_NAME: Joi.string().required(),
+    DB_TEST_USERNAME: Joi.string().required(),
+    DB_TEST_PASSWORD: Joi.string().allow('').required(),
+    DB_TEST_DIALECT: Joi.string().valid('postgres', 'mysql', 'mssql', 'mariadb').required(),
   })
   .unknown();
 

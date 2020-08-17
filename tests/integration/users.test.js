@@ -10,7 +10,7 @@ describe('User routes', () => {
   beforeAll(async () => {
     await User.create(dummyUser);
   });
-  afterAll(async () => {
+  afterEach(async () => {
     await User.destroy({
       truncate: true,
     });
@@ -23,6 +23,20 @@ describe('User routes', () => {
 
       expect(response.status).toBe(httpStatus.OK);
       expect(response.body).toHaveLength(1);
+      expect(responseBody.first_name).toBe(dummyUser.first_name);
+      expect(responseBody.last_name).toBe(dummyUser.last_name);
+      expect(responseBody.email).toBe(dummyUser.email);
+      expect(responseBody.password).toBe(dummyUser.password);
+      expect(responseBody.id).toEqual(expect.any(Number));
+    });
+  });
+  describe('POST v1/users/', () => {
+    test('should return 201 and created user data', async () => {
+      const response = await request(app).post('/v1/users').send(dummyUser);
+
+      const responseBody = response.body;
+
+      expect(response.status).toBe(httpStatus.CREATED);
       expect(responseBody.first_name).toBe(dummyUser.first_name);
       expect(responseBody.last_name).toBe(dummyUser.last_name);
       expect(responseBody.email).toBe(dummyUser.email);

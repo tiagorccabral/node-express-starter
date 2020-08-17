@@ -7,16 +7,19 @@ const { User } = require('../../src/db/models');
 const { dummyUser } = require('../dummies/user');
 
 describe('User routes', () => {
-  beforeAll(async () => {
-    await User.create(dummyUser);
-  });
-  afterEach(async () => {
+  afterAll(async () => {
     await User.destroy({
       truncate: true,
     });
   });
   describe('GET v1/users/', () => {
+    afterAll(async () => {
+      await User.destroy({
+        truncate: true,
+      });
+    });
     test('should return 200 and user list', async () => {
+      await User.create(dummyUser);
       const response = await request(app).get('/v1/users');
 
       const responseBody = response.body[0];
@@ -30,6 +33,7 @@ describe('User routes', () => {
       expect(responseBody.id).toEqual(expect.any(Number));
     });
   });
+
   describe('POST v1/users/', () => {
     test('should return 201 and created user data', async () => {
       const response = await request(app).post('/v1/users').send(dummyUser);
@@ -42,6 +46,12 @@ describe('User routes', () => {
       expect(responseBody.email).toBe(dummyUser.email);
       expect(responseBody.password).toBe(dummyUser.password);
       expect(responseBody.id).toEqual(expect.any(Number));
+    });
+
+    test('should not create if e-mail is taken and return 400 status', async () => {
+      const response = await request(app).post('/v1/users').send(dummyUser);
+
+      expect(response.status).toBe(httpStatus.BAD_REQUEST);
     });
   });
 });

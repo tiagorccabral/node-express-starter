@@ -38,9 +38,7 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   User.emailIsTaken = async function (email) {
-    console.log(email);
     const foundUser = await User.findOne({ where: { email } });
-    console.log(foundUser);
     return !!foundUser;
   };
 

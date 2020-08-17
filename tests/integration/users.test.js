@@ -10,6 +10,11 @@ describe('User routes', () => {
   beforeAll(async () => {
     await User.create(dummyUser);
   });
+  afterAll(async () => {
+    await User.destroy({
+      truncate: true,
+    });
+  });
   describe('GET v1/users/', () => {
     test('should return 200 and user list', async () => {
       const response = await request(app).get('/v1/users');

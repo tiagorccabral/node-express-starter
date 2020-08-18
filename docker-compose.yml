@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  node-express-starter:
+    container_name: node-express-starter
+    build: '.'
+    volumes:
+      - .:/home/node-express-starter
+      - /home/node-express-starter/node_modules
+    depends_on:
+      - postgres-node
+    environment:
+      DATABASE_URL: postgres://user:pass@postgres:5432/db
+    networks:
+      - app-connect
+    ports:
+      - '3000:3000'
+    command: yarn db:setup && yarn dev
+
+  postgres-node:
+    container_name: postgres-node
+    image: postgres:11
+    restart: unless-stopped
+    volumes:
+      - postgres-node-data:/data
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    networks:
+      - app-connect
+
+volumes:
+  postgres-node-data:
+
+networks:
+  app-connect:
+    driver: bridge

@@ -5,12 +5,12 @@ const swaggerDefV1 = require('../../docs/swaggerDefinition');
 
 const router = express.Router();
 
-const specs = swaggerJsdoc({
+const options = swaggerJsdoc({
   swaggerDefinition: swaggerDefV1,
   apis: ['src/docs/*.yaml', 'src/routes/v1/*.js'],
 });
 
 router.use('/', swaggerUi.serve);
-router.get('/', swaggerUi.setup(specs, { explorer: true }));
+router.get('/', swaggerUi.setup(options, { explorer: true }));
 
 module.exports = router;

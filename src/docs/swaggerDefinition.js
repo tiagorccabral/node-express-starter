@@ -1,9 +1,11 @@
+const { version } = require('../../package.json');
 const config = require('../config/config');
 
 const swaggerDefV1 = {
   openapi: '3.0.0',
   info: {
     title: 'Node Express Starter Project API Documentation',
+    version,
     license: {
       name: 'MIT',
       url: 'https://github.com/tiagorccabral/node-express-starter',

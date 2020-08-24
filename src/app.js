@@ -1,6 +1,7 @@
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
+const passport = require('passport');
 const bodyParser = require('body-parser');
 const routes = require('./routes/v1');
 
@@ -15,6 +16,8 @@ app.options('*', cors());
 
 // Populate req data into JSON
 app.use(bodyParser.json());
+
+app.use(passport.initialize());
 
 // Sets backend routes
 app.use('/v1', routes);

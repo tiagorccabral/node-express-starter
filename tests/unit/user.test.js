@@ -14,7 +14,7 @@ describe('Test User model', () => {
       expect(user.dataValues.first_name).toBe(userData.first_name);
       expect(user.dataValues.last_name).toBe(userData.last_name);
       expect(user.dataValues.email).toBe(userData.email);
-      expect(user.dataValues.password).toBe(userData.password);
+      expect(user.dataValues.password).toEqual(expect.anything());
       expect(user.dataValues.createdAt).toEqual(expect.any(Date));
       expect(user.dataValues.updatedAt).toEqual(expect.any(Date));
       expect(user.dataValues.id).toEqual(expect.any(Number));

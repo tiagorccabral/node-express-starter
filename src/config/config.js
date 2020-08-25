@@ -14,6 +14,7 @@ const envVarsSchema = Joi.object()
     DB_USERNAME: Joi.string().required(),
     DB_PASSWORD: Joi.string().allow('').required(),
     DB_DIALECT: Joi.string().valid('postgres', 'mysql', 'mssql', 'mariadb').required(),
+    DB_HOST: Joi.string().optional(),
     DB_TEST_NAME: Joi.string().required(),
     DB_TEST_USERNAME: Joi.string().required(),
     DB_TEST_PASSWORD: Joi.string().allow('').required(),
@@ -40,6 +41,7 @@ module.exports = {
       db_username: envVars.DB_USERNAME,
       db_password: envVars.DB_PASSWORD,
       db_dialect: envVars.DB_DIALECT,
+      db_host: envVars.DB_HOST,
     },
     test: {
       db_name: envVars.DB_TEST_NAME,

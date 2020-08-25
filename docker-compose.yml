@@ -1,37 +1,34 @@
-version: '3'
+version: '3.7'
 
 services:
-  node-express-starter:
-    container_name: node-express-starter
-    build: '.'
-    volumes:
-      - .:/home/node-express-starter
-      - /home/node-express-starter/node_modules
-    depends_on:
-      - postgres-node
-    environment:
-      DATABASE_URL: postgres://user:pass@postgres:5432/db
-    networks:
-      - app-connect
-    ports:
-      - '3000:3000'
-    command: yarn db:setup && yarn dev
-
-  postgres-node:
-    container_name: postgres-node
-    image: postgres:11
-    restart: unless-stopped
-    volumes:
-      - postgres-node-data:/data
+  db:
+    image: postgres
     environment:
       POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
     networks:
       - app-connect
 
-volumes:
-  postgres-node-data:
+  api:
+    build:
+      context: .
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+    networks:
+      - app-connect
+    volumes:
+      - .:/home/node-express-starter
+      - /home/node-express-starter/node_modules
+    ports:
+      - '3000:3000'
+    command: ['./wait-for-it.sh', 'db:5432', '--', './init.sh']
 
 networks:
   app-connect:

@@ -8,6 +8,7 @@ const envVarsSchema = Joi.object()
   .keys({
     NODE_ENV: Joi.string().valid('production', 'development', 'test'),
     PORT: Joi.number().default(3000),
+    JWT_SECRET: Joi.string().required(),
     DB_NAME: Joi.string().required(),
     DB_USERNAME: Joi.string().required(),
     DB_PASSWORD: Joi.string().allow('').required(),
@@ -28,6 +29,7 @@ if (error) {
 module.exports = {
   env: envVars.NODE_ENV,
   port: envVars.PORT,
+  secret: envVars.JWT_SECRET,
   database: {
     development: {
       db_name: envVars.DB_NAME,

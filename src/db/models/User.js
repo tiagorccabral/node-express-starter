@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
@@ -42,6 +42,11 @@ module.exports = (sequelize, DataTypes) => {
   User.emailIsTaken = async function (email) {
     const foundUser = await User.findOne({ where: { email } });
     return !!foundUser;
+  };
+
+  User.prototype.isPasswordMatch = async function (password, storedPassword) {
+    const passwordMatch = await bcrypt.compare(password, storedPassword);
+    return !passwordMatch;
   };
 
   User.beforeCreate(async (user) => {

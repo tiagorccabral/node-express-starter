@@ -12,6 +12,15 @@ const register = async (userData) => {
   return createdUser;
 };
 
+const loginUserWithEmailAndPassword = async (userData) => {
+  const user = await User.findOne({ where: { email: userData.email } });
+  if (!user || (await user.isPasswordMatch(userData.password, user.password))) {
+    throw new ApiError(httpStatus.UNAUTHORIZED, 'Incorrect e-mail or password');
+  }
+  return user;
+};
+
 module.exports = {
   register,
+  loginUserWithEmailAndPassword,
 };

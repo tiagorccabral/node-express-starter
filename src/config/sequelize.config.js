@@ -9,6 +9,7 @@ module.exports = {
     username: dbConfig.development.db_username,
     password: dbConfig.development.db_password,
     dialect: dbConfig.development.db_dialect,
+    host: dbConfig.development.db_host,
   },
   test: {
     database: dbConfig.test.db_name,

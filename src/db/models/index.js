@@ -15,8 +15,8 @@ const dbConfig = config.database[config.env];
 const db = {};
 
 // DB initialization and configs
-const sequelize = new Sequelize(dbConfig.db_name, dbConfig.db_username, dbConfig.db_passwords, {
-  host: 'localhost',
+const sequelize = new Sequelize(dbConfig.db_name, dbConfig.db_username, dbConfig.db_password, {
+  host: process.env.DB_HOST || 'localhost',
   dialect: 'postgres',
   logging: config.env === 'production' ? (msg) => logger.info(msg) : (msg) => logger.debug(msg),
 });

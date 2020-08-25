@@ -3,3 +3,5 @@ node_modules
 
 # ENV files
 .env
+
+data/

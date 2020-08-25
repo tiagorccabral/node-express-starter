@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     'User',
@@ -41,6 +43,12 @@ module.exports = (sequelize, DataTypes) => {
     const foundUser = await User.findOne({ where: { email } });
     return !!foundUser;
   };
+
+  User.beforeCreate(async (user) => {
+    const hashedPassword = await bcrypt.hash(user.password, 10);
+    // eslint-disable-next-line no-param-reassign
+    user.password = hashedPassword;
+  });
 
   return User;
 };

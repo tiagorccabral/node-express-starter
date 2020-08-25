@@ -3,13 +3,13 @@ const config = require('./config');
 const { User } = require('../db/models');
 
 const jwtOptions = {
-  secretOrKey: config.secret,
+  secretOrKey: config.jwt.secret,
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
 };
 
 const jwtVerify = async (payload, next) => {
   try {
-    const user = await User.findById(payload.sub);
+    const user = await User.findOne({ where: { id: payload.sub } });
     if (!user) {
       return next(null, false);
     }

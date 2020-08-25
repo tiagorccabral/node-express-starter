@@ -29,7 +29,7 @@ describe('User routes', () => {
       expect(responseBody.first_name).toBe(dummyUser.first_name);
       expect(responseBody.last_name).toBe(dummyUser.last_name);
       expect(responseBody.email).toBe(dummyUser.email);
-      expect(responseBody.password).toBe(dummyUser.password);
+      expect(responseBody.password).toEqual(expect.anything());
       expect(responseBody.id).toEqual(expect.any(Number));
     });
   });
@@ -44,7 +44,7 @@ describe('User routes', () => {
       expect(responseBody.first_name).toBe(dummyUser.first_name);
       expect(responseBody.last_name).toBe(dummyUser.last_name);
       expect(responseBody.email).toBe(dummyUser.email);
-      expect(responseBody.password).toBe(dummyUser.password);
+      expect(responseBody.password).toEqual(expect.anything());
       expect(responseBody.id).toEqual(expect.any(Number));
     });
 

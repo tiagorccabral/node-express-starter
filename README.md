@@ -14,7 +14,7 @@ git clone https://github.com/tiagorccabral/node-express-starter.git
 2 - This project can be executed with Docker.
 So, if you don't have it already, [install docker here.](https://www.docker.com/get-started)
 
-3 - Copy the contents of .env.sample to a .env file on the Root of your project
+3 - Copy the contents of .env.example to a .env file on the Root of your project
 
 4 - Build the container images
 ```bash

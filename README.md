@@ -25,3 +25,10 @@ docker-compose buid
 ```bash
 docker-compose up
 ```
+
+## Running Tests
+
+To run the test suite, please use the folowing command
+```bash
+yarn test
+```

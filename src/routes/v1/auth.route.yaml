@@ -1,0 +1,53 @@
+paths:
+  /auth/register:
+    post:
+      tags:
+        - 'Auth'
+      summary: Register a user in the system
+      description: Given a E-mail, Password, First name and Last name, user will be registered in the system
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/User'
+      responses:
+        '201':
+          description: A JSON object containing the data of the created user
+          content:
+            application/json:
+              schema:
+                $ref: '#/schemas/User'
+        '400':
+          description: E-mail already exists
+  /auth/login:
+    post:
+      tags:
+        - 'Auth'
+      summary: Login a user
+      description: Given a E-mail and password authenticates user returning the user object and an access token
+      consumes:
+        - 'application/json'
+        - 'application/xml'
+      produces:
+        - 'application/xml'
+        - 'application/json'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/UserCredentials'
+      responses:
+        '201':
+          description: A JSON object containing the data of the created user
+          schema:
+            $ref: '#/schemas/User'
+        '400':
+          description: A message requesting missing fields to be presented
+          schema:
+            $ref: '#/schemas/User'

@@ -4,4 +4,6 @@ node_modules
 # ENV files
 .env
 
+# Docker local db default storage volume location
 data/
+test-data/

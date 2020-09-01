@@ -16,5 +16,6 @@ module.exports = {
     username: dbConfig.test.db_username,
     password: dbConfig.test.db_password,
     dialect: dbConfig.test.db_dialect,
+    host: dbConfig.test.db_host,
   },
 };

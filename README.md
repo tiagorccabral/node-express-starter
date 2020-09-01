@@ -18,7 +18,7 @@ So, if you don't have it already, [install docker here.](https://www.docker.com/
 
 4 - Build the container images
 ```bash
-docker-compose buid
+docker-compose build
 ```
 
 5 - Run the project

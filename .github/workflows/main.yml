@@ -1,0 +1,17 @@
+name: CI Step
+
+on:
+  pull_request:
+    branches: 
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install node modules
+      run: yarn
+    - name: Copy .env files
+      run: cp .env.example .env
+    - name: Run Jest tests
+      run: yarn test

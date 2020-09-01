@@ -20,9 +20,19 @@ yarn setup
 ```
 It will copy the .env.example file to a .env file (change here the variables if needed) and it will run the docker commands
 (docker-compose build && docker-compose up)
+## Starting the server
+When you first install the project with yarn setup it already starts the server. If you want to start it again, use:
+```bash
+docker-compose up
+```
+
 ## Running Tests
 
 To run the test suite, please use the folowing command
 ```bash
 yarn test
 ```
+
+## Postman requests
+If you want to test requests with postman you can get the requests here:
+[postman requests](https://www.getpostman.com/collections/91335f67fd1441344712)

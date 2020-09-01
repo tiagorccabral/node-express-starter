@@ -16,4 +16,4 @@ jobs:
     - name: Start container
       run: docker-compose -f docker-compose.test.yml up -d
     - name: Run Jest tests
-      run: docker exec -it node-express-starter_api_1 yarn test
+      run: docker exec -t -it node-express-starter_api_1 yarn test

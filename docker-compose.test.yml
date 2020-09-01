@@ -8,7 +8,7 @@ services:
       POSTGRES_USER: ${DB_TEST_USERNAME}
       POSTGRES_PASSWORD: ${DB_TEST_PASSWORD}
     volumes:
-      - ./data:/var/lib/postgresql/data
+      - ./test-data:/var/lib/postgresql/data
     ports:
       - '5432:5432'
     networks:
@@ -29,7 +29,7 @@ services:
       - /home/node-express-starter/node_modules
     ports:
       - '3000:3000'
-    command: ['./wait-for-it.sh', 'db:5432', '--', './init.sh']
+    command: ['./wait-for-it.sh', 'db:5432', '--', './init-test-env.sh']
 
 networks:
   app-connect:

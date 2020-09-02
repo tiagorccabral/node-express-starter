@@ -18,7 +18,8 @@
     "lint:fix": "eslint . --fix",
     "prettier": "prettier --check **/*.js",
     "prettier:fix": "prettier --write **/*.js",
-    "setup": "chmod +x ./setup.sh && ./setup.sh"
+    "setup": "chmod +x ./setup.sh && ./setup.sh",
+    "dtest": "docker-compose -f docker-compose.test.yml up -d && docker exec -i node-express-starter_api_1 yarn test && docker-compose -f docker-compose.test.yml down"
   },
   "license": "MIT",
   "dependencies": {

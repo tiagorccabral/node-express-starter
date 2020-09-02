@@ -4,7 +4,9 @@ const cors = require('cors');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const { jwtStrategy } = require('./config/passport');
+const { API_VERSION } = require('./utils/constants');
 const routes = require('./routes/v1');
+const mainRoutes = require('./routes/v1/main.route');
 
 const app = express();
 
@@ -22,7 +24,10 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 passport.use('jwt', jwtStrategy);
 
+// Set root path
+app.use('/', mainRoutes);
+
 // Sets backend routes
-app.use('/v1', routes);
+app.use(`/${API_VERSION}`, routes);
 
 module.exports = app;

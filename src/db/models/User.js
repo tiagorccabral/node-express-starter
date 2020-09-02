@@ -55,5 +55,9 @@ module.exports = (sequelize, DataTypes) => {
     user.password = hashedPassword;
   });
 
+  User.prototype.roles = function () {
+    return 'admin';
+  };
+
   return User;
 };

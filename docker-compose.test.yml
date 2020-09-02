@@ -1,0 +1,36 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: ${DB_TEST_NAME}
+      POSTGRES_USER: ${DB_TEST_USERNAME}
+      POSTGRES_PASSWORD: ${DB_TEST_PASSWORD}
+    volumes:
+      - ./test-data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    networks:
+      - app-connect
+
+  api:
+    build:
+      context: .
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      NODE_ENV: test
+    networks:
+      - app-connect
+    volumes:
+      - .:/home/node-express-starter
+      - /home/node-express-starter/node_modules
+    ports:
+      - '3000:3000'
+    command: ['./wait-for-it.sh', 'db:5432', '--', './init-test-env.sh']
+
+networks:
+  app-connect:
+    driver: bridge

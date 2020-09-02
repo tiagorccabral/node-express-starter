@@ -48,6 +48,7 @@ module.exports = {
       db_username: envVars.DB_TEST_USERNAME,
       db_password: envVars.DB_TEST_PASSWORD,
       db_dialect: envVars.DB_TEST_DIALECT,
+      db_host: envVars.DB_HOST,
     },
   },
 };

@@ -1,4 +1,4 @@
-name: CI Step
+name: Continuous integration Step
 
 on:
   pull_request:

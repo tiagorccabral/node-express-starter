@@ -1,17 +1,7 @@
 const jwt = require('jsonwebtoken');
 const httpStatus = require('http-status');
-const { User } = require('../db/models');
 
-function authorize(roles = []) {
-  // roles param can be a single role string (e.g. Role.User or 'User')
-  // or an array of roles (e.g. [Role.Admin, Role.User] or ['Admin', 'User'])
-  let rolesArray;
-  if (typeof roles === 'string') {
-    rolesArray = [roles];
-  } else {
-    rolesArray = roles;
-  }
-
+function requireCurrentUser() {
   return [
     // authorize based on user role
     (req, res, next) => {
@@ -29,19 +19,16 @@ function authorize(roles = []) {
       // authenticate JWT token and attach user to request object (req.user)
       jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
         if (err) return res.status(httpStatus.UNAUTHORIZED).send({ error: 'Token invalid' });
-        req.userId = decoded.sub;
-        // const userRole = 'admin';
-        const userRole = (await User.findByPk(decoded.sub)).roles(); // find user role by its ID
-        //
-        if (rolesArray.length && !rolesArray.includes(userRole)) {
-          // user's role is not authorized
-          return res.status(httpStatus.UNAUTHORIZED).json({ message: 'Unauthorized role' });
+        if (req.params.userId.toString() !== decoded.sub.toString()) {
+          // user is requesting content of other user
+          return res.status(httpStatus.UNAUTHORIZED).json({ message: 'You can only access your own content' });
         }
         // authentication and authorization successful
+        req.userId = decoded.sub;
         next();
       });
     },
   ];
 }
 
-module.exports = authorize;
+module.exports = requireCurrentUser;

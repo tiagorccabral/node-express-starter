@@ -7,6 +7,11 @@ const version = catchAsync(async (req, res) => {
   res.status(httpStatus.OK).send({ apiVersion });
 });
 
+const adminRoute = catchAsync(async (req, res) => {
+  res.status(httpStatus.OK).send({ message: 'This is a sample admin route' });
+});
+
 module.exports = {
   version,
+  adminRoute,
 };

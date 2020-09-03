@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const httpStatus = require('http-status');
 const { User } = require('../db/models');
 
-function authorize(roles = []) {
+function authorizeRoles(roles = []) {
   // roles param can be a single role string (e.g. Role.User or 'User')
   // or an array of roles (e.g. [Role.Admin, Role.User] or ['Admin', 'User'])
   let rolesArray;
@@ -44,4 +44,4 @@ function authorize(roles = []) {
   ];
 }
 
-module.exports = authorize;
+module.exports = authorizeRoles;

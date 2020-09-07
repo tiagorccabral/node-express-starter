@@ -33,28 +33,11 @@ docker-compose up
 
 ## Running Tests
 
-To run tests in a Docker environment follow this steps:
-
-1 - Copy the contents of .env.example to a .env file on the Root of your project
-
-2 - Build the container images
+To run tests in a Docker environment run this command:
 
 ```bash
-docker-compose -f docker-compose.test.yml build
+yarn dtest
 ```
-
-3 - Start the containers
-
-```bash
-docker-compose -f docker-compose.test.yml up -d
-```
-
-4 - Run the tests
-
-```bash
-docker exec -i node-express-starter_api_1 yarn test
-```
-
 _Obs:_ if you run into a ECONNREFUSED error, wait a few seconds as it may be due to the test DB container still be booting up.
 
 ---

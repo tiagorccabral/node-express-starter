@@ -24,7 +24,6 @@ describe('Main routes', () => {
     describe('when the user is an admin', () => {
       beforeAll(async () => {
         const user = await createUser();
-        console.log(user);
         const token = `Bearer ${(await tokenService.generateAuthTokens(user)).access.token}`;
         response = await request(app).get('/admin').set('authorization', token);
       });

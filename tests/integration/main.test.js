@@ -2,9 +2,7 @@ const request = require('supertest');
 const httpStatus = require('http-status');
 const { API_VERSION } = require('../../src/utils/constants');
 
-const { User } = require('../../src/db/models');
-
-const { dummyUser } = require('../dummies/user');
+const { createUser } = require('../factories/user.factory');
 
 const { tokenService } = require('../../src/services');
 
@@ -25,7 +23,8 @@ describe('Main routes', () => {
     let response;
     describe('when the user is an admin', () => {
       beforeAll(async () => {
-        const user = await User.create(dummyUser); // user is mocked with admin role when created
+        const user = await createUser();
+        console.log(user);
         const token = `Bearer ${(await tokenService.generateAuthTokens(user)).access.token}`;
         response = await request(app).get('/admin').set('authorization', token);
       });

@@ -38,6 +38,7 @@ describe('Auth routes', () => {
       const response = await request(app).post('/v1/auth/register').send(dummyUser);
 
       expect(response.status).toBe(httpStatus.BAD_REQUEST);
+      expect(response.text).toEqual(expect.stringContaining('Email already taken'));
     });
   });
 

@@ -9,3 +9,6 @@ node_modules
 # Docker local db default storage volume location
 data/
 test-data/
+
+# Ignore Jest coverage related files
+coverage/

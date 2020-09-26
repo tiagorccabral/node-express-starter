@@ -14,12 +14,14 @@
     "db:reset": "sequelize db:drop; sequelize db:create; sequelize db:migrate; sequelize db:seed:all",
     "test:setup": "NODE_ENV=test yarn db:reset",
     "test": "yarn test:setup; jest -i --forceExit",
+    "test:coverage": "yarn test:setup; jest -i --collectCoverage --forceExit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prettier": "prettier --check **/*.js",
     "prettier:fix": "prettier --write **/*.js",
     "setup": "chmod +x ./setup.sh && ./setup.sh",
-    "dtest": "docker-compose -f docker-compose.test.yml up -d && docker exec -i node-express-starter_api_1 yarn test"
+    "dtest": "docker-compose -f docker-compose.test.yml up -d && docker exec -i node-express-starter_api_1 yarn test",
+    "dtest:coverage": "docker-compose -f docker-compose.test.yml up -d && docker exec -i node-express-starter_api_1 yarn test:coverage"
   },
   "license": "MIT",
   "dependencies": {
@@ -30,6 +32,7 @@
     "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "factory-girl": "^5.0.4",
     "helmet": "^3.23.3",
     "http-status": "^1.4.2",
     "jsonwebtoken": "^8.5.1",

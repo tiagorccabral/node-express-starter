@@ -50,6 +50,14 @@ To run the test suite, please use the folowing command
 yarn test
 ```
 
+---
+
+In case you wold like to generate a test coverage report, the following command is available
+
+```bash
+yarn dtest:coverage
+```
+
 ## Postman requests
 If you want to test requests with postman you can get the requests here:
 [postman requests](https://www.getpostman.com/collections/91335f67fd1441344712)

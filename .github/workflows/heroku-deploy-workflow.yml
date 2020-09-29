@@ -1,0 +1,21 @@
+name: Continuous integration Step
+
+on:
+  push:
+    branches:
+      - deploy-test
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.5.6
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: node-starter-express
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          usedocker: true
+          docker_build_args: |
+            NODE_ENV
+        env:
+          NODE_ENV: development

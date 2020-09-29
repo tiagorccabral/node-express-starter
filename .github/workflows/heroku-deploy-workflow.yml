@@ -17,5 +17,11 @@ jobs:
           usedocker: true
           docker_build_args: |
             NODE_ENV
+            DB_NAME
+            DB_USERNAME
+            DB_PASSWORD
         env:
           NODE_ENV: development
+          DB_NAME: development
+          DB_USERNAME: development
+          DB_PASSWORD: development

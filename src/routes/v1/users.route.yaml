@@ -1,0 +1,45 @@
+paths:
+  /users:
+    get:
+      tags:
+        - 'User'
+      summary: Get all users in the system
+      description: Requests all users in the system, and returns an array of users
+      produces:
+        - 'application/json'
+      parameters: []
+      responses:
+        '200':
+          description: 'A JSON object containing an array of users'
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/User'
+        '500':
+          description: Failed to fetch
+  /users/{currentUserId}:
+    get:
+      tags:
+        - 'User'
+      summary: Get information about the current logged in user
+      description: ''
+      produces:
+        - 'application/json'
+      parameters:
+        - name: 'currentUserId'
+          in: 'path'
+          description: 'ID of user currently logged in'
+          required: true
+          type: 'integer'
+          format: 'int64'
+      responses:
+        '200':
+          description: 'A JSON object containing information of currently logged in user'
+          schema:
+            type: 'object'
+            items:
+              $ref: '#/definitions/User'
+        '401':
+          description: 'You can only access your own content'
+      security:
+        - BearerAuth: []

@@ -12,6 +12,7 @@ server = app.listen(config.port, async () => {
     logger.error('Unable to connect to the database:', error);
   }
   logger.info(`Listening to port ${config.port}`);
+  logger.info(`Local docs at: http://localhost:${config.port}/v1/api-docs`);
 });
 
 const exitHandler = () => {

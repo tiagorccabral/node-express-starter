@@ -1,4 +1,4 @@
-name: Continuous integration Step
+name: Continuous deployment step - Deploy to heroku server
 
 on:
   push:

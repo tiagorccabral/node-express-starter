@@ -16,16 +16,19 @@ git clone https://github.com/tiagorccabral/node-express-starter.git
 So, if you don't have it already, [install docker here.](https://www.docker.com/get-started)
 
 3 - Run the yarn setup command:
+
 ```bash
 yarn setup
 ```
 
 It will copy the .env.example file to a .env file (change here the variables if needed) and it will run the docker commands
 (docker-compose build && docker-compose up)
+
 ## Starting the server
+
 When you first install the project with yarn setup it already starts the server. If you want to start it again, use:
 
-5 - Run the project
+4 - Run the project
 
 ```bash
 docker-compose up
@@ -38,6 +41,7 @@ To run tests in a Docker environment run this command:
 ```bash
 yarn dtest
 ```
+
 _Obs:_ if you run into a ECONNREFUSED error, wait a few seconds as it may be due to the test DB container still be booting up.
 
 ---
@@ -59,5 +63,14 @@ yarn dtest:coverage
 ```
 
 ## Postman requests
+
 If you want to test requests with postman you can get the requests here:
 [postman requests](https://www.getpostman.com/collections/91335f67fd1441344712)
+
+## Online API Docs
+
+This project also has an online OAS running with Swagger.
+
+You can find find it under the `/v1/api-docs` url.
+
+So if you're running this project in localhost under the port 3000, the api docs url would be: [http://localhost:3000/v1/api-docs](http://localhost:3000/v1/api-docs)

@@ -14,6 +14,10 @@ const envVarsSchema = Joi.object()
     DB_USERNAME: Joi.string().required(),
     DB_PASSWORD: Joi.string().allow('').required(),
     DB_DIALECT: Joi.string().valid('postgres', 'mysql', 'mssql', 'mariadb').required(),
+    DB_PROD_NAME: Joi.string().required(),
+    DB_PROD_USERNAME: Joi.string().required(),
+    DB_PROD_PASSWORD: Joi.string().allow('').required(),
+    DB_PROD_DIALECT: Joi.string().valid('postgres', 'mysql', 'mssql', 'mariadb').required(),
     DB_HOST: Joi.string().optional(),
     DB_TEST_NAME: Joi.string().required(),
     DB_TEST_USERNAME: Joi.string().required(),
@@ -36,6 +40,13 @@ module.exports = {
     access_expiration_minutes: envVars.JWT_ACCESS_EXPIRATION_MINUTES,
   },
   database: {
+    production: {
+      db_name: envVars.DB_PROD_NAME,
+      db_username: envVars.DB_PROD_USERNAME,
+      db_password: envVars.DB_PROD_PASSWORD,
+      db_dialect: envVars.DB_PROD_DIALECT,
+      db_host: envVars.DB_HOST,
+    },
     development: {
       db_name: envVars.DB_NAME,
       db_username: envVars.DB_USERNAME,

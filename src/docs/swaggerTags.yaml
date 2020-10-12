@@ -1,4 +1,6 @@
 tags:
+  - name: 'Checks'
+    description: 'Endpoints related to checking API status'
   - name: 'User'
     description: 'Endpoints related to users'
   - name: 'Auth'

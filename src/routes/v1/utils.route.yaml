@@ -1,0 +1,13 @@
+paths:
+  /checks/health-check:
+    get:
+      tags:
+        - 'Checks'
+      summary: A request designed to check if router, and controller are reachable
+      description: Request a GET HTTP action to verify if server is up and running.
+      produces:
+        - 'application/json'
+      parameters: []
+      responses:
+        '200':
+          description: 'The server is up and running!'
